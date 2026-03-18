@@ -55,6 +55,8 @@ public interface IncrementalSnapshotContext<T> {
 
     Map<String, Object> store(Map<String, Object> offset);
 
+    void resetChunk();
+
     void revertChunk();
 
     void setSchema(Table schema);

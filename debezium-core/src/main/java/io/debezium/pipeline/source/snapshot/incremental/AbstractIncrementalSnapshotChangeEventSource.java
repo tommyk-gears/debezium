@@ -616,6 +616,7 @@ public abstract class AbstractIncrementalSnapshotChangeEventSource<P extends Par
         }
         notificationService.incrementalSnapshotNotificationService().notifyAborted(context, partition, offsetContext, stopped);
         if (!context.snapshotRunning()) {
+            context.resetChunk();
             context.unsetCorrelationId();
         }
         LOGGER.info("Removed collections from incremental snapshot: '{}'", stopped);
@@ -797,7 +798,7 @@ public abstract class AbstractIncrementalSnapshotChangeEventSource<P extends Par
     }
 
     protected void postIncrementalSnapshotCompleted() {
-        // no-op
+        totalRowsScanned = 0;
     }
 
     protected Table refreshTableSchema(Table table) throws SQLException {

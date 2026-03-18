@@ -316,7 +316,8 @@ public class AbstractIncrementalSnapshotContext<T> implements IncrementalSnapsho
         return chunkEndPosition;
     }
 
-    private void resetChunk() {
+    @Override
+    public void resetChunk() {
         lastEventKeySent = null;
         chunkEndPosition = null;
         maximumKey = null;

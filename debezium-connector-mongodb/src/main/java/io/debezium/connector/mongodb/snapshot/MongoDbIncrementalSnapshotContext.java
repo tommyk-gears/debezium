@@ -336,7 +336,8 @@ public class MongoDbIncrementalSnapshotContext<T> implements IncrementalSnapshot
         return chunkEndPosition;
     }
 
-    private void resetChunk() {
+    @Override
+    public void resetChunk() {
         lastEventKeySent = null;
         chunkEndPosition = null;
         maximumKey = null;
